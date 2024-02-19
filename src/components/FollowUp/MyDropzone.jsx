@@ -10,7 +10,7 @@ import {
 import { toast } from "react-toastify";
 import { FaFile, FaUpload } from "react-icons/fa6";
 import axios from "axios";
-import { useModalContext } from "../context/modal";
+import { useModalContext } from "../../context/modal";
 // import sampleFile from "../assets/invoice_template.xlsx";
 const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
   const { showSapConnectModal, setShowSapConnectModal } = useModalContext();

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MyDropzone from "./MyDropzone";
 import SelectCategories from "./SelectCategories";
-const Collect = () => {
+const FollowUp = () => {
   const [fileUploaded, setFileUploaded] = useState(false);
   return (
     <div className="h-full w-full">
@@ -30,4 +30,4 @@ const Collect = () => {
   );
 };
 
-export default Collect;
+export default FollowUp;

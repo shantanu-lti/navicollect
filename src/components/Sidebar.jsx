@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  FaHouse,
-  FaChartSimple,
-  FaUser,
-  FaCircleQuestion,
-} from "react-icons/fa6";
+import { FaHouse, FaGauge, FaUser, FaCircleQuestion } from "react-icons/fa6";
 import useApi from "../utils/useApi";
 import ltiMlogo from "../assets/LTIMindtree_logo.svg";
 import naviLogo from "../assets/NaviIcon.png";
+import { Link } from "react-router-dom";
 const Sidebar = () => {
   const { logoutUser } = useApi();
   return (
@@ -20,44 +16,28 @@ const Sidebar = () => {
           </span>
         </div>
         <ul className="md:flex flex-col">
-          <li
-            className="list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="My Space"
-            data-tooltip-place="right"
-          >
-            <FaHouse className="fill-gray-100 mx-auto xl:text-lg inline" />{" "}
-            <span className="text-white pl-4 text-sm xl:text-base">
-              Follow Up
-            </span>
+          <li className="list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer">
+            <Link to="/">
+              <FaHouse className="fill-gray-100 mx-auto xl:text-lg inline" />{" "}
+              <span className="text-white pl-4 text-sm xl:text-base">
+                Follow Up
+              </span>
+            </Link>
           </li>
-          <li
-            className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer"
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Reports"
-            data-tooltip-place="right"
-          >
-            <FaChartSimple className="fill-gray-100 mx-auto xl:text-lg inline" />
-            <span className="text-white pl-4 text-sm xl:text-base">
-              Analytics
-            </span>
+          <li className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer">
+            <Link to="/risk-analysis">
+              <FaGauge className="fill-gray-100 mx-auto xl:text-lg inline" />
+              <span className="text-white pl-4 text-sm xl:text-base">
+                Risk Analysis
+              </span>
+            </Link>
           </li>
 
-          <li
-            className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer"
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Help?"
-            data-tooltip-place="right"
-          >
+          <li className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer">
             <FaCircleQuestion className="fill-gray-100 mx-auto xl:text-lg inline" />
             <span className="text-white pl-4 text-sm xl:text-base">Help</span>
           </li>
-          <li
-            className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer"
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Support ?"
-            data-tooltip-place="right"
-          >
+          <li className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer">
             <FaUser className="fill-gray-100 mx-auto xl:text-lg inline" />
             <span className="text-white pl-4 text-sm xl:text-base">
               Support

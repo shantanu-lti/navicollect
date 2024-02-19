@@ -5,8 +5,8 @@ import { FaCheck } from "react-icons/fa6";
 import Select from "react-select";
 import AsyncSelect from "react-select/async";
 import PulseLoader from "react-spinners/PulseLoader";
-import useReactSelectOptions from "../utils/useReactSelectOptions";
-import { custGroupData, sbuData, daysData } from "../utils/constants";
+import useReactSelectOptions from "../../utils/useReactSelectOptions";
+import { custGroupData, sbuData, daysData } from "../../utils/constants";
 const SelectCategories = () => {
   const { createOptions } = useReactSelectOptions();
   const formRef = useRef();

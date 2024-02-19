@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { useAuth } from "../context/auth";
 import { Navigate, Outlet } from "react-router-dom";
 import PageHeader from "./PageHeader";
-
-import SAPConnectModal from "./SAPConnectModal";
+import SAPConnectModal from "./FollowUp/SAPConnectModal";
 import { useModalContext } from "../context/modal";
 
 const Home = () => {
   const { user } = useAuth();
   const { showSapConnectModal, setShowSapConnectModal } = useModalContext();
-
   if (!user.isLoggedIn) return <Navigate to="/login" />;
 
   return (
@@ -18,7 +16,7 @@ const Home = () => {
         <SAPConnectModal setShowSapConnectModal={setShowSapConnectModal} />
       )}
       <div className="flex flex-col p-4 container mx-auto ">
-        <PageHeader pageTitle={"Follow Up"} />
+        <PageHeader />
         <div className="mt-8">
           <Outlet />
         </div>

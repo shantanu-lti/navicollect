@@ -2,14 +2,20 @@ import React from "react";
 import { useAuth } from "../context/auth";
 import { FaRightFromBracket, FaMagnifyingGlass } from "react-icons/fa6";
 import useApi from "../utils/useApi";
+import { useLocation } from "react-router-dom";
+
 const PageHeader = ({ pageTitle }) => {
   const { user } = useAuth();
   const { logoutUser } = useApi();
+  const { pathname } = useLocation();
+  let title;
+  if (pathname === "/") title = "Follow Up";
+  if (pathname === "/risk-analysis") title = "Risk Analysis";
   return (
     <div className="flex justify-between items-center">
       {/* page title */}
       <span className="text-2xl xl:text-3xl font-bold text-slate-900">
-        {pageTitle}
+        {title}
       </span>
 
       {/* search box */}
