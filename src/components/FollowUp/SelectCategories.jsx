@@ -11,22 +11,28 @@ const SelectCategories = () => {
   const { createOptions } = useReactSelectOptions();
   const formRef = useRef();
   const [sending, setSending] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
-  const [sbu, setSbu] = useState("");
+  // const [emailSent, setEmailSent] = useState(false);
+  const [sbu, setSbu] = useState([]);
   const [partnerName, setPartnerName] = useState("");
-  const [custGroup, setCustGroup] = useState("");
+  const [custGroup, setCustGroup] = useState([]);
   const [ageDelay, setAgeDelay] = useState("");
   const [custGroupOptions, setCustGroupOptions] = useState([]);
+  const [custGroupDisabled, setCustGroupDisabled] = useState(false);
+  const [sbuDisabled, setSbuDisabled] = useState(false);
 
   const dateOptions = createOptions(daysData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    const form = new FormData(formRef.current);
+    if (sbu.length === 0 && custGroup.length === 0) {
+      toast.warn("Could not proceed. Please Select SBU name or Client Group.");
+      setSending(false);
+      return;
+    }
     const payload = {
-      invoice_type: form.get("invoiceType"),
-      age_delay: form.get("ageSelection"),
+      sbu_name_list: sbu,
+      customer_description_code_list: custGroup,
     };
     try {
       const url =
@@ -39,7 +45,12 @@ const SelectCategories = () => {
         },
       });
       setSending(false);
-      if (response.data.status) setEmailSent(true);
+      console.log(response.data.message.toLowerCase().includes("success"));
+      if (
+        response.data.status ||
+        response.data.message.toLowerCase().includes("success")
+      )
+        toast.success("Email Sent Successfuly.");
     } catch (err) {
       console.log(err);
       setSending(false);
@@ -88,7 +99,8 @@ const SelectCategories = () => {
 
   const getClientByPartner = async (partnerName) => {
     const url =
-      import.meta.env.VITE_BACKEND_BASE_URL + "/account-payable/get-clients";
+      import.meta.env.VITE_BACKEND_BASE_URL +
+      "/account-payable/get-clients-by-partner";
     if (!partnerName) return;
     try {
       const {
@@ -104,6 +116,8 @@ const SelectCategories = () => {
       toast.error("Error Occured. Please try again later.");
     }
   };
+  console.log(sbu);
+  console.log(custGroup);
 
   return (
     <form onSubmit={handleSubmit} ref={formRef}>
@@ -114,15 +128,25 @@ const SelectCategories = () => {
         <div className="w-full flex flex-col md:grid md:grid-cols-10 gap-4 justify-center items-center">
           <div className="w-full md:col-span-3">
             <AsyncSelect
+              isDisabled={sbuDisabled}
               isMulti
               cacheOptions
               defaultOptions
-              isDisabled={true}
               placeholder="Search and Select SBU"
               classNamePrefix="react-select"
               loadOptions={getSbu}
               onChange={(options) => {
-                setSbu(options.value);
+                if (options.length === 0) {
+                  setSbu([]);
+                  setCustGroupDisabled(false);
+                  return;
+                }
+                const temp = [];
+                setCustGroupDisabled(true);
+                options.forEach((option) => {
+                  temp.push(option.value);
+                });
+                setSbu(temp);
               }}
             />
           </div>
@@ -131,6 +155,7 @@ const SelectCategories = () => {
           </div>
           <div className="w-full md:col-span-3">
             <AsyncSelect
+              isDisabled={custGroupDisabled}
               cacheOptions
               defaultOptions
               placeholder="Search and Select Client Partner"
@@ -145,18 +170,39 @@ const SelectCategories = () => {
             />
           </div>
           <div className="w-full md:col-span-3">
-            {partnerName != "" && custGroupOptions.length > 0 && (
-              <Select
-                options={custGroupOptions}
-                placeholder="Select Customer Group"
-                classNamePrefix="react-select"
-                defaultValue={custGroup}
-                isMulti={true}
-                onChange={(options) => {
-                  setCustGroup(options.value);
-                }}
-              />
-            )}
+            <Select
+              isDisabled={custGroupDisabled}
+              options={custGroupOptions}
+              placeholder="Select Customer Group"
+              classNamePrefix="react-select"
+              defaultValue={custGroup}
+              noOptionsMessage={() => (
+                <span>
+                  Please select{" "}
+                  <span className="font-bold">Client Partner Name</span> first.
+                </span>
+              )}
+              isMulti={true}
+              onChange={(options) => {
+                if (partnerName === "") {
+                  toast.warn("Please select the partner name first.");
+                  return;
+                }
+                if (options.length === 0) {
+                  setCustGroup([]);
+                  setSbuDisabled(false);
+                  setSbu([]);
+                  return;
+                }
+
+                const temp = [];
+                setSbuDisabled(true);
+                options.forEach((option) => {
+                  temp.push(option.value);
+                });
+                setCustGroup(temp);
+              }}
+            />
           </div>
         </div>
 
@@ -180,26 +226,13 @@ const SelectCategories = () => {
           </div>
         </div> */}
 
-        {emailSent ? (
-          <button
-            type="button"
-            className=" text-green-600 font-bold text-sm"
-            onClick={() => {
-              toast.warn("File is Uploaded successfully.");
-            }}
-          >
-            <FaCheck className="inline mr-2 text-sm fill-green-600" />
-            Email Sent Successfully
-          </button>
-        ) : (
-          <button className="w-[140px] mt-4 bg-blue-600 text-white font-bold  px-6 py-3 rounded-full">
-            {sending ? (
-              <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
-            ) : (
-              "Follow Up"
-            )}
-          </button>
-        )}
+        <button className="w-[140px] mt-4 bg-blue-600 text-white font-bold  px-6 py-3 rounded-full">
+          {sending ? (
+            <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
+          ) : (
+            "Follow Up"
+          )}
+        </button>
       </fieldset>
     </form>
   );
