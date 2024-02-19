@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import MyDropzone from "./MyDropzone";
 import SelectCategories from "./SelectCategories";
 const Collect = () => {
-  const [fileUploaded, setFileUploaded] = useState(true);
+  const [fileUploaded, setFileUploaded] = useState(false);
   return (
     <div className="h-full w-full">
       <div className="flex justify-between items-end">
@@ -18,14 +18,14 @@ const Collect = () => {
         />
       </div>
 
-      {fileUploaded && (
-        <>
-          <p className="font-semibold text-xl mt-12">Select Criterias:</p>
-          <div className="mt-6">
-            <SelectCategories fileUploaded={fileUploaded} />
-          </div>
-        </>
-      )}
+      {/* {fileUploaded && ( */}
+      <>
+        <p className="font-semibold text-xl mt-12">Select Criterias:</p>
+        <div className="mt-6">
+          <SelectCategories fileUploaded={fileUploaded} />
+        </div>
+      </>
+      {/* )} */}
     </div>
   );
 };
