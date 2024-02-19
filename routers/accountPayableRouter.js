@@ -9,8 +9,8 @@ const {
 const verifyToken = require("../middleware/authMiddleware");
 
 // router.post("/upload-excel", uploadExcel);
-router.post("/get-sbu", verifyToken, getSbu);
-router.post("/get-partner", verifyToken, getPartners);
-router.post("/get-client", verifyToken, getClientByPartner);
+router.post("/get-sbus", verifyToken, getSbu);
+router.post("/get-partners", verifyToken, getPartners);
+router.post("/get-clients", verifyToken, getClientByPartner);
 
 module.exports = router;
