@@ -37,7 +37,8 @@ const SelectCategories = () => {
     };
     try {
       const url =
-        import.meta.env.VITE_BACKEND_BASE_URL + "/account-payable/send-email";
+        import.meta.env.VITE_BACKEND_BASE_URL +
+        "/account-receivable/send-email";
       const response = await axios.post(url, payload, {
         headers: {
           Authorization:
@@ -63,7 +64,7 @@ const SelectCategories = () => {
   const getSbu = (searchText) => {
     return new Promise(async (resolve, reject) => {
       const url =
-        import.meta.env.VITE_BACKEND_BASE_URL + "/account-payable/get-sbus";
+        import.meta.env.VITE_BACKEND_BASE_URL + "/account-receivable/get-sbus";
       if (!searchText) return resolve([]);
       try {
         const {
@@ -83,7 +84,8 @@ const SelectCategories = () => {
   const getClientPartner = (searchText) => {
     return new Promise(async (resolve, reject) => {
       const url =
-        import.meta.env.VITE_BACKEND_BASE_URL + "/account-payable/get-partners";
+        import.meta.env.VITE_BACKEND_BASE_URL +
+        "/account-receivable/get-partners";
       if (!searchText) return resolve([]);
       try {
         const {
@@ -103,7 +105,7 @@ const SelectCategories = () => {
   const getClientByPartner = async (partnerName) => {
     const url =
       import.meta.env.VITE_BACKEND_BASE_URL +
-      "/account-payable/get-clients-by-partner";
+      "/account-receivable/get-clients-by-partner";
     if (!partnerName) return;
     try {
       const {

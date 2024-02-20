@@ -46,21 +46,25 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
     form.set("file", uploadedFile);
     console.log(form.get("file"));
     const url =
-      import.meta.env.VITE_BACKEND_BASE_URL + "/account-payable/upload-excel";
-    const uploadResult = await axios.post(url, form, {
-      headers: {
-        "Content-Type": "multipart/form",
-        Authorization:
-          "Basic " + btoa("ltimindtree:HSG762736tg^&&z565R2U3GBU471T8Y7"),
-        "Access-Control-Allow-Origin": "*",
-      },
-    });
-    if (uploadResult.data.status) {
-      toast.success("File Uploaded");
-      setFileUploaded(true);
-      setIsDisabled(true);
-      setIsUploading(false);
-    } else {
+      import.meta.env.VITE_BACKEND_BASE_URL +
+      "/account-receivable/upload-excel";
+    try {
+      const uploadResult = await axios.post(url, form, {
+        headers: {
+          "Content-Type": "multipart/form",
+          Authorization:
+            "Basic " + btoa("ltimindtree:HSG762736tg^&&z565R2U3GBU471T8Y7"),
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+      if (uploadResult.data.status) {
+        toast.success("File Uploaded");
+        setFileUploaded(true);
+        setIsDisabled(true);
+        setIsUploading(false);
+      }
+    } catch (err) {
+      console.log(err);
       toast.error("Unable to upload file. Please try again later");
       setIsUploading(false);
     }
