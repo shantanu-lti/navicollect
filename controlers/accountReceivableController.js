@@ -85,4 +85,29 @@ const getClientByPartner = async (req, res) => {
   }
 };
 
-module.exports = { uploadExcel, getSbu, getPartners, getClientByPartner };
+const getClients = async (req, res) => {
+  const searchText = req.body.text;
+  if (!searchText)
+    return res
+      .status(400)
+      .send({ status: false, message: "search text not found" });
+  const query = `select distinct client_name from navicollect.client_partner_mapping where LOWER(client_name) like '%${searchText.toLowerCase()}%' order by client_name asc`;
+  try {
+    const result = await pool.query(query);
+    const rows = [];
+    result.rows.forEach((row) => {
+      rows.push(row.client_name);
+    });
+    res.send({ status: true, result: rows });
+  } catch (err) {
+    res.status(400).send({ status: false, message: err });
+  }
+};
+
+module.exports = {
+  uploadExcel,
+  getSbu,
+  getPartners,
+  getClientByPartner,
+  getClients,
+};

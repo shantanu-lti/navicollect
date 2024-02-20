@@ -3,7 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 const authRouter = require("./routers/authRouter");
-const accountPayableRouter = require("./routers/accountPayableRouter");
+const accountReceivableRouter = require("./routers/accountReceivableRouter");
 const EXPRESS_PORT = process.env.EXPRESS_PORT;
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", authRouter);
 
-app.use("/account-payable", accountPayableRouter);
+app.use("/account-receivable", accountReceivableRouter);
 
 app.get("/health", (req, res) => {
   res.json({ message: "All OK" });
