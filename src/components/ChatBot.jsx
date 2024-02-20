@@ -6,7 +6,7 @@ import PulseLoader from "react-spinners/PulseLoader";
 const ChatBot = () => {
   const [showChatBox, setShowChatBox] = useState(false);
   const [loading, setLoading] = useState(false);
-  const chatbotUrl = "http://13.127.183.113:8015/";
+  const chatbotUrl = "https://13.127.183.113:8015/";
   return (
     <>
       {showChatBox && (

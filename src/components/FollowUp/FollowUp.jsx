@@ -18,14 +18,12 @@ const FollowUp = () => {
         />
       </div>
 
-      {fileUploaded && (
-        <>
-          <p className="font-semibold text-xl mt-12">Select Criterias:</p>
-          <div className="mt-6">
-            <SelectCategories fileUploaded={fileUploaded} />
-          </div>
-        </>
-      )}
+      <>
+        <p className="font-semibold text-xl mt-12">Select Criterias:</p>
+        <div className="mt-6">
+          <SelectCategories fileUploaded={fileUploaded} />
+        </div>
+      </>
     </div>
   );
 };

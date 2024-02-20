@@ -11,10 +11,10 @@ const SelectCategories = () => {
   const { createOptions } = useReactSelectOptions();
   const formRef = useRef();
   const [sending, setSending] = useState(false);
-  // const [emailSent, setEmailSent] = useState(false);
-  const [sbu, setSbu] = useState([]);
-  const [partnerName, setPartnerName] = useState("");
-  const [custGroup, setCustGroup] = useState([]);
+  const [emailSent, setEmailSent] = useState(false);
+  const [sbu, setSbu] = useState(null);
+  const [partnerName, setPartnerName] = useState(null);
+  const [custGroup, setCustGroup] = useState(null);
   const [ageDelay, setAgeDelay] = useState("");
   const [custGroupOptions, setCustGroupOptions] = useState([]);
   const [custGroupDisabled, setCustGroupDisabled] = useState(false);
@@ -25,14 +25,15 @@ const SelectCategories = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    if (sbu.length === 0 && custGroup.length === 0) {
+    setEmailSent(false);
+    if (sbu === null && custGroup === null) {
       toast.warn("Could not proceed. Please Select SBU name or Client Group.");
       setSending(false);
       return;
     }
     const payload = {
-      sbu_name_list: sbu,
-      customer_description_code_list: custGroup,
+      sbu_name_list: sbu ? [sbu.value] : [],
+      customer_description_code_list: custGroup ? custGroup.value : "",
     };
     try {
       const url =
@@ -50,9 +51,11 @@ const SelectCategories = () => {
         response.data.status ||
         response.data.message.toLowerCase().includes("success")
       )
-        toast.success("Email Sent Successfuly.");
+        setEmailSent(true);
+      toast.success("Email Sent Successfuly.");
     } catch (err) {
       console.log(err);
+      toast.error("Could proceed. Please try again later.");
       setSending(false);
     }
   };
@@ -128,26 +131,28 @@ const SelectCategories = () => {
         <div className="w-full flex flex-col md:grid md:grid-cols-10 gap-4 justify-center items-center">
           <div className="w-full md:col-span-3">
             <AsyncSelect
-              isDisabled={sbuDisabled}
-              isMulti
+              isDisabled={custGroup}
               cacheOptions
               defaultOptions
               placeholder="Search and Select SBU"
               classNamePrefix="react-select"
               loadOptions={getSbu}
-              onChange={(options) => {
-                if (options.length === 0) {
-                  setSbu([]);
-                  setCustGroupDisabled(false);
-                  return;
-                }
-                const temp = [];
-                setCustGroupDisabled(true);
-                options.forEach((option) => {
-                  temp.push(option.value);
-                });
-                setSbu(temp);
+              isClearable={true}
+              clearValue={() => setSbu("")}
+              onInputChange={(newValue) => {
+                console.log("on input changed called new value= ", newValue);
               }}
+              // onChange={(options) => {
+              //   if (options.value === "") {
+              //     setSbu("");
+              //     setCustGroupDisabled(false);
+              //     return;
+              //   }
+              //   const temp = [];
+              //   setCustGroupDisabled(true);
+              //   setSbu(options.value);
+              // }}
+              onChange={setSbu}
             />
           </div>
           <div className="w-full md:col-span-1">
@@ -155,7 +160,7 @@ const SelectCategories = () => {
           </div>
           <div className="w-full md:col-span-3">
             <AsyncSelect
-              isDisabled={custGroupDisabled}
+              isDisabled={sbu}
               cacheOptions
               defaultOptions
               placeholder="Search and Select Client Partner"
@@ -167,41 +172,37 @@ const SelectCategories = () => {
                 setCustGroupOptions([]);
                 getClientByPartner(options.value);
               }}
+              // onChange={setPartnerName}
             />
           </div>
           <div className="w-full md:col-span-3">
             <Select
-              isDisabled={custGroupDisabled}
+              isDisabled={sbu}
               options={custGroupOptions}
               placeholder="Select Customer Group"
               classNamePrefix="react-select"
               defaultValue={custGroup}
+              isClearable
               noOptionsMessage={() => (
                 <span>
                   Please select{" "}
                   <span className="font-bold">Client Partner Name</span> first.
                 </span>
               )}
-              isMulti={true}
-              onChange={(options) => {
-                if (partnerName === "") {
-                  toast.warn("Please select the partner name first.");
-                  return;
-                }
-                if (options.length === 0) {
-                  setCustGroup([]);
-                  setSbuDisabled(false);
-                  setSbu([]);
-                  return;
-                }
-
-                const temp = [];
-                setSbuDisabled(true);
-                options.forEach((option) => {
-                  temp.push(option.value);
-                });
-                setCustGroup(temp);
-              }}
+              // onChange={(options) => {
+              //   if (partnerName === "") {
+              //     toast.warn("Please select the partner name first.");
+              //     return;
+              //   }
+              //   if (options.value === "") {
+              //     setCustGroup("");
+              //     setSbuDisabled(false);
+              //     setSbu("");
+              //     return;
+              //   }
+              //   setCustGroup(options.value);
+              // }}
+              onChange={setCustGroup}
             />
           </div>
         </div>
@@ -233,6 +234,12 @@ const SelectCategories = () => {
             "Follow Up"
           )}
         </button>
+        {/* {emailSent && (
+          <span className="ml-4 text-green-600 font-bold text-sm rounded-full cursor-default">
+            <FaCheck className="inline mr-2 text-sm fill-green-600" />
+            Email Sent Successfully
+          </span>
+        )} */}
       </fieldset>
     </form>
   );
