@@ -104,10 +104,38 @@ const getClients = async (req, res) => {
   }
 };
 
+const analyseRisk = async (req, res) => {
+  const company = req.body.company;
+  console.log("analysing risk for", company);
+  if (!company || company === "")
+    return res
+      .status(400)
+      .send({ status: false, message: "invalid company name" });
+  const apiUsername = process.env.BASIC_AUTH_USERNAME;
+  const apiPassword = process.env.BASIC_AUTH_PASSWORD;
+  try {
+    const url =
+      "http://13.127.183.113:8016/account_receivable/company_analysis";
+    const response = await axios.post(
+      url,
+      { company: company },
+      {
+        auth: {
+          username: apiUsername,
+          password: apiPassword,
+        },
+      }
+    );
+    res.send(response.data);
+  } catch (err) {
+    res.status(400).send({ status: false, message: err });
+  }
+};
 module.exports = {
   uploadExcel,
   getSbu,
   getPartners,
   getClientByPartner,
   getClients,
+  analyseRisk,
 };
