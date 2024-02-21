@@ -13,7 +13,7 @@ const AuthContextProvider = ({ children }) => {
     user,
     setUser,
   };
-  useEffect(() => {
+  const validateToken = async () => {
     if (sessionStorage.getItem("token") && sessionStorage.getItem("username")) {
       const user = {
         username: sessionStorage.getItem("username"),
@@ -22,8 +22,30 @@ const AuthContextProvider = ({ children }) => {
       setUser({ ...user, isLoggedIn: true });
       axios.defaults.headers.common["Authorization"] =
         "Bearer " + sessionStorage.getItem("token");
-      toast.success("Login Successful");
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/auth/validate";
+
+      try {
+        const response = await axios.post(url);
+        console.log(response);
+        if (response.data.status === true) {
+          toast.success("Login Successful");
+        } else {
+          setUser({ isLoggedIn: false });
+          sessionStorage.clear();
+          delete axios.defaults.headers.common["Authorization"];
+          toast.warn("Session Expired");
+        }
+      } catch (err) {
+        setUser({ isLoggedIn: false });
+        sessionStorage.clear();
+        delete axios.defaults.headers.common["Authorization"];
+        toast.warn("Session Expired");
+      }
     }
+  };
+
+  useEffect(() => {
+    validateToken();
   }, []);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { FaCheck } from "react-icons/fa6";
@@ -27,7 +27,9 @@ const SelectCategories = () => {
     setSending(true);
     setEmailSent(false);
     if (sbu === null && custGroup === null) {
-      toast.warn("Could not proceed. Please Select SBU name or Client Group.");
+      toast.warn(
+        "Could not proceed. Please Select SBU name or Customer Group."
+      );
       setSending(false);
       return;
     }
@@ -47,16 +49,25 @@ const SelectCategories = () => {
         },
       });
       setSending(false);
-      console.log(response.data.message.toLowerCase().includes("success"));
+      console.log(response.data);
       if (
         response.data.status ||
         response.data.message.toLowerCase().includes("success")
-      )
+      ) {
         setEmailSent(true);
-      toast.success("Email Sent Successfuly.");
+        toast.success("Email Sent Successfuly.");
+      }
+      if (response.data.message.toLowerCase().includes("fail")) {
+        // setEmailSent(true);
+        toast.error("Could not send email. Please try again later");
+      }
+      if (response.data.message.toLowerCase().includes("no data found")) {
+        // setEmailSent(true);
+        toast.info("No data found to take follow up");
+      }
     } catch (err) {
       console.log(err);
-      toast.error("Could proceed. Please try again later.");
+      toast.error("Could not proceed. Please try again later.");
       setSending(false);
     }
   };
@@ -121,8 +132,28 @@ const SelectCategories = () => {
       toast.error("Error Occured. Please try again later.");
     }
   };
+
+  // const handleAsyncPartnerChange = (options) => {
+  //   setPartnerName(options.value);
+  //   setCustGroup("");
+  //   setCustGroupOptions([]);
+  //   getClientByPartner(options.value);
+  // };
+
   console.log(sbu);
   console.log(custGroup);
+
+  useEffect(() => {
+    if (partnerName) {
+      setCustGroup(null);
+      setCustGroupOptions([]);
+      getClientByPartner(partnerName.value);
+    } else {
+      console.log("partnername null", partnerName);
+      setCustGroup(null);
+      setCustGroupOptions([]);
+    }
+  }, [partnerName]);
 
   return (
     <form onSubmit={handleSubmit} ref={formRef}>
@@ -165,15 +196,11 @@ const SelectCategories = () => {
               isDisabled={sbu}
               cacheOptions
               defaultOptions
+              isClearable
               placeholder="Search and Select Client Partner"
               classNamePrefix="react-select"
               loadOptions={getClientPartner}
-              onChange={(options) => {
-                setPartnerName(options.value);
-                setCustGroup("");
-                setCustGroupOptions([]);
-                getClientByPartner(options.value);
-              }}
+              onChange={setPartnerName}
               // onChange={setPartnerName}
             />
           </div>
@@ -185,6 +212,7 @@ const SelectCategories = () => {
               classNamePrefix="react-select"
               defaultValue={custGroup}
               isClearable
+              value={custGroup}
               noOptionsMessage={() => (
                 <span>
                   Please select{" "}
@@ -229,7 +257,7 @@ const SelectCategories = () => {
           </div>
         </div> */}
 
-        <button className="w-[140px] mt-4 bg-blue-600 text-white font-bold  px-6 py-3 rounded-full">
+        <button className="w-[140px] mt-4 bg-blue-600 text-white font-bold  px-4 py-3 rounded-sm">
           {sending ? (
             <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
           ) : (

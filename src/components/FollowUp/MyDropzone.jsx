@@ -65,8 +65,8 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
       }
     } catch (err) {
       console.log(err);
-      toast.error("Unable to upload file. Please try again later");
       setIsUploading(false);
+      toast.error("Unable to upload file. Please try again later");
     }
   };
 
@@ -133,7 +133,7 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
         {!isDisabled && !fileUploaded ? (
           <button
             disabled={isDisabled}
-            className="bg-blue-600 w-[120px] text-white font-bold  px-6 py-3 rounded-full"
+            className="bg-blue-600 w-[120px] text-white font-bold  px-4 py-3 rounded-sm"
           >
             {isUploading ? (
               <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
@@ -158,7 +158,7 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
         <div className="ml-auto flex gap-8">
           <button
             type="button"
-            className=" text-slate-800 font-bold text-sm rounded-full"
+            className=" text-slate-800 font-bold text-sm rounded-sm"
             onClick={() => {
               setShowSapConnectModal(true);
             }}

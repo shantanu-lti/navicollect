@@ -47,3 +47,6 @@ main::-webkit-scrollbar-thumb{
 .react-select__menu, .react-select__menu-list, .react-select__option{
   font-size: 0.85rem;
 }
+.react-select--is-disabled{
+  background-color: white;
+}

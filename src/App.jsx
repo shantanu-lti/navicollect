@@ -15,7 +15,7 @@ function App() {
       <Tooltip id="my-tooltip" className="z-10" />
       <ToastContainer
         position="top-right"
-        autoClose={2000}
+        autoClose={5000}
         hideProgressBar={true}
         newestOnTop={false}
         closeOnClick
