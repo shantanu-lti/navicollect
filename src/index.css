@@ -58,3 +58,16 @@ main::-webkit-scrollbar-thumb{
   font-weight: 600;
   font-style: normal;
 }
+.past-data-table{
+  
+  td,th{
+    padding: 0.75rem 0.5rem;
+    border: solid 1px #80808036;
+  }
+  th{
+    color:white
+  }
+  tr{
+   
+  }
+}

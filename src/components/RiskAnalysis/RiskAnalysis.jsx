@@ -7,6 +7,7 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import Markdown from "react-markdown";
 import { FaCheck } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 const RiskAnalysis = () => {
   const { createOptions } = useReactSelectOptions();
   const [custGroup, setCustGroup] = useState(null);
@@ -71,7 +72,7 @@ const RiskAnalysis = () => {
       const payload = {
         sentiment: analysis.sentiment,
         analysis: analysis.llm_analysis,
-        company: custGroup,
+        company: custGroup.value,
       };
 
       const response = await axios.post(url, payload, {
@@ -157,12 +158,14 @@ const RiskAnalysis = () => {
                 "Analyze Risk"
               )}
             </button>
-            <button
-              type="button"
-              className="text-blue-600 font-bold rounded-full"
-            >
-              Past Data
-            </button>
+            <Link to="/risk-analysis/past-data">
+              <button
+                type="button"
+                className="text-blue-600 font-bold rounded-full"
+              >
+                Past Data
+              </button>
+            </Link>
           </div>
         </form>
       </div>

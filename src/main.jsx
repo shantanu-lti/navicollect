@@ -9,6 +9,8 @@ import AuthContextProvider from "./context/auth.jsx";
 // import ModalContextProvider from "./context/modal.jsx";
 import FollowUp from "./components/FollowUp/FollowUp.jsx";
 import RiskAnalysis from "./components/RiskAnalysis/RiskAnalysis.jsx";
+import PastData from "./components/RiskAnalysis/PastData.jsx";
+import PastDataDetail from "./components/RiskAnalysis/PastDataDetail.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router basename={import.meta.env.VITE_BASENAME}>
     <Routes>
@@ -23,6 +25,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/" element={<Home />}>
           <Route path="/" element={<FollowUp />} />
           <Route path="/risk-analysis" element={<RiskAnalysis />} />
+          <Route path="/risk-analysis/past-data" element={<PastData />} />
+          <Route
+            path="/risk-analysis/past-data/:id"
+            element={<PastDataDetail />}
+          />
         </Route>
         <Route path="/login" element={<Login />} />
       </Route>
