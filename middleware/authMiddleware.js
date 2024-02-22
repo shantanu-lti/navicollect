@@ -9,7 +9,9 @@ const verifyToken = (req, res, next) => {
     return res.status(401).json({ error: "Access denied" });
   try {
     const decoded = jwt.verify(authToken, "A28jhYp9Mzj0");
+    // console.log(decoded);
     req.username = decoded.username;
+    req.uid = decoded.uid;
     next();
   } catch (error) {
     // console.log(error);

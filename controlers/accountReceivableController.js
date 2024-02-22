@@ -131,6 +131,24 @@ const analyseRisk = async (req, res) => {
     res.status(400).send({ status: false, message: err });
   }
 };
+
+const saveRiskAnalysis = async (req, res) => {
+  const uid = req.uid;
+
+  const { sentiment, analysis, company } = req.body;
+  if (!sentiment || !analysis || !company || !uid)
+    return res
+      .status(400)
+      .send({ status: false, message: "Insufficient Data" });
+  const query = `insert into navicollect.risk_analysis(user_id,company_name,sentiment,analysis) values ($1, $2, $3, $4)`;
+  try {
+    const result = await pool.query(query, [uid, company, sentiment, analysis]);
+    res.send({ status: true, message: "Data Saved Successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({ status: false, message: err });
+  }
+};
 module.exports = {
   uploadExcel,
   getSbu,
@@ -138,4 +156,5 @@ module.exports = {
   getClientByPartner,
   getClients,
   analyseRisk,
+  saveRiskAnalysis,
 };

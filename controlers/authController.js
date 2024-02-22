@@ -7,7 +7,7 @@ const login = async (req, res) => {
   try {
     const { username, password } = req.body;
     pool.query(
-      `select username,name from public.users where username='${username}' and password='${password}'`,
+      `select * from public.users where username='${username}' and password='${password}'`,
       (error, results) => {
         if (error) {
           console.log(error);
@@ -20,7 +20,7 @@ const login = async (req, res) => {
         }
         const user = results.rows[0];
         const token = jwt.sign(
-          { username: user.username, name: user.name },
+          { username: user.username, name: user.name, uid: user.id },
           "A28jhYp9Mzj0",
           {
             expiresIn: "1d",

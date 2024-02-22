@@ -7,6 +7,7 @@ const {
   getClientByPartner,
   getClients,
   analyseRisk,
+  saveRiskAnalysis,
 } = require("../controlers/accountReceivableController");
 const verifyToken = require("../middleware/authMiddleware");
 
@@ -16,4 +17,5 @@ router.post("/get-partners", verifyToken, getPartners);
 router.post("/get-clients-by-partner", verifyToken, getClientByPartner);
 router.post("/get-clients", verifyToken, getClients);
 router.post("/risk-analysis", verifyToken, analyseRisk);
+router.post("/risk-analysis/save", verifyToken, saveRiskAnalysis);
 module.exports = router;
