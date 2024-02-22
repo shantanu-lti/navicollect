@@ -10,7 +10,7 @@ const PageHeader = ({ pageTitle }) => {
   const { pathname } = useLocation();
   let title;
   if (pathname === "/") title = "Follow Up";
-  if (pathname === "/risk-analysis") title = "Risk Analysis";
+  if (pathname === "/risk-analysis") title = "Credit Risk Analysis";
   return (
     <div className="flex justify-between items-center">
       {/* page title */}

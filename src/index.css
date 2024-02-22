@@ -50,3 +50,11 @@ main::-webkit-scrollbar-thumb{
 .react-select--is-disabled{
   background-color: white;
 }
+.markdown *{
+  all: revert;
+}
+
+.markdown li em{
+  font-weight: 600;
+  font-style: normal;
+}
