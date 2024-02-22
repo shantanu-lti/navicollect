@@ -145,10 +145,53 @@ const saveRiskAnalysis = async (req, res) => {
     const result = await pool.query(query, [uid, company, sentiment, analysis]);
     res.send({ status: true, message: "Data Saved Successfully" });
   } catch (err) {
-    console.log(err);
+    // console.log(err);
     res.status(400).send({ status: false, message: err });
   }
 };
+
+const getPastDataByUid = async (req, res) => {
+  const uid = req.uid;
+  // console.log("uid:-----------", uid);
+  if (!uid)
+    return res
+      .status(400)
+      .send({ status: false, message: "Insufficient Data" });
+
+  const query = `select * from navicollect.risk_analysis where user_id = $1`;
+  try {
+    const result = await pool.query(query, [uid]);
+    res.send({ status: true, rows: result.rows });
+  } catch (err) {
+    // console.log(err);
+    res.status(400).send({ status: false, message: err });
+  }
+};
+
+const getPastDataByUidAndId = async (req, res) => {
+  const uid = req.uid;
+  const id = req.query.id;
+  // console.log("uid:-----------", uid);
+  if (!uid || !id)
+    return res
+      .status(400)
+      .send({ status: false, message: "Insufficient Data" });
+
+  const query = `select 
+	risk_analysis.timestampz ,users.name,risk_analysis.company_name,risk_analysis.sentiment,risk_analysis.analysis
+	from navicollect.risk_analysis, public.users
+	where risk_analysis.user_id = $1 
+	and risk_analysis.id = $2
+	and risk_analysis.user_id=users.id`;
+  try {
+    const result = await pool.query(query, [uid, id]);
+    res.send({ status: true, rows: result.rows });
+  } catch (err) {
+    // console.log(err);
+    res.status(400).send({ status: false, message: err });
+  }
+};
+
 module.exports = {
   uploadExcel,
   getSbu,
@@ -157,4 +200,6 @@ module.exports = {
   getClients,
   analyseRisk,
   saveRiskAnalysis,
+  getPastDataByUid,
+  getPastDataByUidAndId,
 };
