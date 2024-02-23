@@ -1,5 +1,11 @@
 import React from "react";
-import { FaHouse, FaGauge, FaUser, FaCircleQuestion } from "react-icons/fa6";
+import {
+  FaHouse,
+  FaGauge,
+  FaUser,
+  FaCircleQuestion,
+  FaRegFileLines,
+} from "react-icons/fa6";
 import useApi from "../utils/useApi";
 import ltiMlogo from "../assets/LTIMindtree_logo.svg";
 import naviLogo from "../assets/NaviIcon.png";
@@ -45,7 +51,20 @@ const Sidebar = () => {
               </span>
             </Link>
           </li>
-
+          <li
+            className={
+              pathname.includes("risk-report")
+                ? "list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+                : "list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+            }
+          >
+            <Link to="/risk-report">
+              <FaRegFileLines className="fill-gray-100 mx-auto xl:text-lg inline" />
+              <span className="text-white pl-4 text-sm xl:text-base">
+                Risk Report
+              </span>
+            </Link>
+          </li>
           <li className="list-none px-6 py-6 2xl:py-8 2xl:p-8 cursor-pointer">
             <FaCircleQuestion className="fill-gray-100 mx-auto xl:text-lg inline" />
             <span className="text-white pl-4 text-sm xl:text-base">Help</span>

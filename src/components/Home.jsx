@@ -15,9 +15,9 @@ const Home = () => {
       {showSapConnectModal && (
         <SAPConnectModal setShowSapConnectModal={setShowSapConnectModal} />
       )}
-      <div className="flex flex-col p-4 lg:px-8 container mx-auto ">
+      <div className="flex flex-col p-4 lg:px-8 container mx-auto h-full">
         <PageHeader />
-        <div className="mt-8">
+        <div className="mt-8 h-full flex-grow">
           <Outlet />
         </div>
       </div>

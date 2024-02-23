@@ -7,7 +7,7 @@ import axios from "axios";
 import Chart from "chart.js/auto";
 import Markdown from "react-markdown";
 import { FaCheck } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const RiskAnalysis = () => {
   const { createOptions } = useReactSelectOptions();
   const [custGroup, setCustGroup] = useState(null);
@@ -16,6 +16,7 @@ const RiskAnalysis = () => {
   const [dataSaved, setDataSaved] = useState(false);
   const sentimentChartRef = useRef();
   const [analysis, setAnalysis] = useState(null);
+  const navigate = useNavigate();
 
   const getClients = (searchText) => {
     return new Promise(async (resolve, reject) => {
@@ -38,10 +39,10 @@ const RiskAnalysis = () => {
       }
     });
   };
-
-  const handleAnalyzeRisk = async (e) => {
-    e.preventDefault();
-    if (!custGroup || custGroup === "") return;
+  3;
+  const handleAnalyzeRisk = async () => {
+    if (!custGroup || custGroup === "")
+      return toast.error("Please select a customer group from dropdown");
     setLoading(true);
     setAnalysis(null);
     setDataSaved(false);
@@ -63,7 +64,14 @@ const RiskAnalysis = () => {
     }
   };
 
-  const handleSaveData = async (e) => {
+  const handlePastData = async () => {
+    if (!custGroup || custGroup === "")
+      return toast.error("Please select a customer group from dropdown");
+
+    navigate("/risk-analysis/past-data/customer-group/" + custGroup.value);
+  };
+
+  const handleSaveData = async () => {
     setSavingData(true);
     try {
       const url =
@@ -134,7 +142,11 @@ const RiskAnalysis = () => {
   return (
     <>
       <div className="mt-4 w-full">
-        <form onSubmit={handleAnalyzeRisk}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <AsyncSelect
             cacheOptions
             defaultOptions
@@ -150,6 +162,8 @@ const RiskAnalysis = () => {
           <div className="mt-4 flex justify-start items-center gap-6 ">
             <button
               disabled={loading}
+              onClick={handleAnalyzeRisk}
+              name="analyseRisk"
               className="w-[160px] outline-0 bg-blue-600 text-white font-bold  px-4 py-3 rounded-sm"
             >
               {loading ? (
@@ -158,14 +172,13 @@ const RiskAnalysis = () => {
                 "Analyze Risk"
               )}
             </button>
-            <Link to="/risk-analysis/past-data">
-              <button
-                type="button"
-                className="text-blue-600 font-bold rounded-full"
-              >
-                Past Data
-              </button>
-            </Link>
+            <button
+              name="pastData"
+              className="text-blue-600 font-bold rounded-full"
+              onClick={handlePastData}
+            >
+              Past Data
+            </button>
           </div>
         </form>
       </div>
@@ -173,7 +186,7 @@ const RiskAnalysis = () => {
         {analysis && !loading && custGroup ? (
           <>
             <div className="w-full 2xl:w-2/5  bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md">
-              <h2 className="text-xl font-bold">Sentiment Score</h2>
+              <h2 className="text-xl font-bold">Financial Risk Score</h2>
               <div className="flex h-full w-full justify-center items-center">
                 <canvas
                   className="w-full md:max-h-[200px] 2xl:max-h-[350px]"

@@ -54,20 +54,16 @@ main::-webkit-scrollbar-thumb{
   all: revert;
 }
 
-.markdown li em{
-  font-weight: 600;
+.markdown em{
+  font-weight: 600; 
   font-style: normal;
 }
-.past-data-table{
-  
-  td,th{
-    padding: 0.75rem 0.5rem;
-    border: solid 1px #80808036;
-  }
-  th{
-    color:white
-  }
-  tr{
-   
-  }
+
+.past-data-table td,th{
+  padding: 0.75rem 0.5rem;
+  border: solid 1px #80808036;
+}
+
+.past-data-table th{
+  color:white
 }

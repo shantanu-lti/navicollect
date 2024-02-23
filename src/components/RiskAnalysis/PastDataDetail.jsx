@@ -84,7 +84,7 @@ const PastDataDetail = () => {
   return (
     <div className="flex flex-col gap-4 lg:gap-6">
       <div className="flex flex-col md:flex-row gap-4 lg:gap-6">
-        <div className="w-full rounded-sm bg-white shadow-md  lg:p-6 2xl:p-8">
+        <div className="w-full rounded-sm bg-white shadow-md p-4 lg:p-6 2xl:p-8">
           <h2 className="text-xl font-bold">Info</h2>
           <div className="flex justify-center items-start mt-4">
             <table className="w-full">
@@ -94,7 +94,7 @@ const PastDataDetail = () => {
                   <td className="py-3">{data.timestampz}</td>
                 </tr>
                 <tr>
-                  <td className="py-3 font-medium">Analysed By:</td>
+                  <td className="py-3 font-medium">Genrated By:</td>
                   <td className="py-3">{data.name}</td>
                 </tr>
                 <tr>
@@ -106,7 +106,7 @@ const PastDataDetail = () => {
           </div>
         </div>
         <div className="w-full bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md">
-          <h2 className="text-xl font-bold">Sentiment Score</h2>
+          <h2 className="text-xl font-bold">Financial Risk Score</h2>
           <div className="flex h-full w-full justify-center items-center">
             <canvas
               className="w-full md:max-h-[200px] 2xl:max-h-[250px]"
