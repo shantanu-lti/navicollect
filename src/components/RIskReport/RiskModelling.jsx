@@ -4,13 +4,14 @@ import { toast } from "react-toastify";
 import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import useReactSelectOptions from "../../utils/useReactSelectOptions";
-import reymondReport from "../../assets/reports/REYNOLDS_SMITH_&_HILLS_INC__2024-02-22_11-30-38.pdf";
+import reymondReport from "../../assets/reports/REYNOLDS_SMITH_&_HILLS_INC__2024-02-22_11-30-38.pdf/#toolbar=0";
 // import PDFViewer from "./PDFViewer";
-const RiskReport = () => {
+const RiskModelling = () => {
   const [custGroup, setCustGroup] = useState(null);
   const [loading, setLoading] = useState(false);
   const { createOptions } = useReactSelectOptions();
   const [showPfd, setShowPdf] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
   const __dirname = new URL(".", import.meta.url).pathname;
   const getClients = (searchText) => {
     return new Promise(async (resolve, reject) => {
@@ -40,13 +41,16 @@ const RiskReport = () => {
     setLoading(true);
     setShowPdf(false);
     setTimeout(() => {
-      setLoading(false);
-      setShowPdf(true);
+      setShowSummary(true);
     }, 10000);
+    setTimeout(() => {
+      setShowPdf(true);
+      setLoading(false);
+    }, 20000);
   };
   return (
-    <div className="flex h-full w-full flex-col">
-      <div className="mt-4 w-full">
+    <div className="flex h-full w-full flex-col gap-4">
+      <div className="w-full">
         <form onSubmit={handleGenerateReport}>
           <AsyncSelect
             cacheOptions
@@ -60,7 +64,7 @@ const RiskReport = () => {
             required
             onChange={setCustGroup}
           />
-          <div className="mt-4 flex justify-start items-center gap-6 ">
+          <div className="mt-4 flex justify-start items-center">
             <button
               disabled={loading}
               name="analyseRisk"
@@ -75,13 +79,60 @@ const RiskReport = () => {
           </div>
         </form>
       </div>
+
+      {showSummary ? (
+        <div className="p-4 rounded-sm bg-white shadow-md">
+          <div className="flex justify-around">
+            <div className="">
+              <span className="block font-medium">Risk Score</span>
+              <span className="block text-center text-green-600 font-bold">
+                90
+              </span>
+            </div>
+            <div>
+              <span className="block font-medium">Credit Limit</span>
+              <span className="block text-center text-green-600 font-bold">
+                $1M
+              </span>
+            </div>
+            <div>
+              <span className="block font-medium">Possible OFAC</span>
+              <span className="block text-center text-green-600 font-bold">
+                No
+              </span>
+            </div>
+            <div>
+              <span className="block font-medium">Derogatory Legal</span>
+              <span className="block text-center text-yellow-600 font-bold">
+                2 ($3.6K)
+              </span>
+            </div>
+            <div>
+              <span className="block font-medium">Internation Score</span>
+              <span className="block text-center text-green-600 font-bold">
+                A
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        loading && (
+          <div className="flex-grow h-40 w-full animate-pulse">
+            <div className="h-24 w-full bg-slate-200 flex justify-center items-center">
+              <PulseLoader color="#1e293b" speedMultiplier={0.5} size={12} />
+              <span className="inline-block pl-4"> Generating Summary</span>
+            </div>
+          </div>
+        )
+      )}
+
       {showPfd && !loading && (
-        <div className="flex-grow h-full w-full mt-4">
+        <div className="flex-grow h-full w-full">
           <embed src={reymondReport} className="w-full h-full"></embed>
         </div>
       )}
       {!showPfd && loading && (
-        <div className="flex-grow h-full w-full mt-4 animate-pulse">
+        <div className="flex-grow h-full w-full animate-pulse">
           <div className="h-full w-full bg-slate-200 flex justify-center items-center">
             <PulseLoader color="#1e293b" speedMultiplier={0.5} size={12} />
             <span className="inline-block pl-4"> Generating AI Report</span>
@@ -92,4 +143,4 @@ const RiskReport = () => {
   );
 };
 
-export default RiskReport;
+export default RiskModelling;

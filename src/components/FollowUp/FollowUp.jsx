@@ -11,7 +11,7 @@ const FollowUp = () => {
           system to process the data:
         </p>
       </div>
-      <div className="mt-6">
+      <div className="mt-4">
         <MyDropzone
           fileUploaded={fileUploaded}
           setFileUploaded={setFileUploaded}

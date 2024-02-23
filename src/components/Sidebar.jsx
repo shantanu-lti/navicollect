@@ -58,10 +58,10 @@ const Sidebar = () => {
                 : "list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
             }
           >
-            <Link to="/risk-report">
+            <Link to="/risk-modelling">
               <FaRegFileLines className="fill-gray-100 mx-auto xl:text-lg inline" />
               <span className="text-white pl-4 text-sm xl:text-base">
-                Risk Report
+                Risk Modelling
               </span>
             </Link>
           </li>

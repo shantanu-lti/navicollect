@@ -11,7 +11,7 @@ import FollowUp from "./components/FollowUp/FollowUp.jsx";
 import RiskAnalysis from "./components/RiskAnalysis/RiskAnalysis.jsx";
 import PastData from "./components/RiskAnalysis/PastData.jsx";
 import PastDataDetail from "./components/RiskAnalysis/PastDataDetail.jsx";
-import RiskReport from "./components/RIskReport/RiskReport.jsx";
+import RiskModelling from "./components/RIskReport/RiskModelling.jsx";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Router basename={import.meta.env.VITE_BASENAME}>
     <Routes>
@@ -34,7 +34,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             path="/risk-analysis/past-data/:id"
             element={<PastDataDetail />}
           />
-          <Route path="/risk-report" element={<RiskReport />} />
+          <Route path="/risk-modelling" element={<RiskModelling />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Route>

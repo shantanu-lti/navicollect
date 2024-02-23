@@ -12,7 +12,7 @@ const PageHeader = ({ pageTitle }) => {
   if (pathname === "/") title = "Follow Up";
   if (pathname === "/risk-analysis") title = "Credit Risk Analysis";
   if (pathname.includes("/risk-analysis/past-data")) title = "Past Data";
-  if (pathname.includes("/risk-report")) title = "Risk Report";
+  if (pathname.includes("/risk-modelling")) title = "Risk Modelling";
 
   return (
     <div className="flex justify-between items-center">

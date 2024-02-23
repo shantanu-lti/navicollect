@@ -39,7 +39,7 @@ const RiskAnalysis = () => {
       }
     });
   };
-  3;
+
   const handleAnalyzeRisk = async () => {
     if (!custGroup || custGroup === "")
       return toast.error("Please select a customer group from dropdown");
@@ -141,7 +141,7 @@ const RiskAnalysis = () => {
 
   return (
     <>
-      <div className="mt-4 w-full">
+      <div className="w-full">
         <form
           onSubmit={(e) => {
             e.preventDefault();
