@@ -150,29 +150,27 @@ const saveRiskAnalysis = async (req, res) => {
   }
 };
 
-const getPastDataByUid = async (req, res) => {
-  const uid = req.uid;
-  // console.log("uid:-----------", uid);
-  if (!uid)
+const getPastDataByCompanyName = async (req, res) => {
+  const company_name = req.query.custGroup;
+  if (!company_name)
     return res
       .status(400)
       .send({ status: false, message: "Insufficient Data" });
 
-  const query = `select * from navicollect.risk_analysis where user_id = $1`;
+  const query = `select * from navicollect.risk_analysis where company_name = $1`;
   try {
-    const result = await pool.query(query, [uid]);
+    const result = await pool.query(query, [company_name]);
     res.send({ status: true, rows: result.rows });
   } catch (err) {
-    // console.log(err);
+    console.log(err);
     res.status(400).send({ status: false, message: err });
   }
 };
 
-const getPastDataByUidAndId = async (req, res) => {
-  const uid = req.uid;
+const getPastDataById = async (req, res) => {
   const id = req.query.id;
   // console.log("uid:-----------", uid);
-  if (!uid || !id)
+  if (!id)
     return res
       .status(400)
       .send({ status: false, message: "Insufficient Data" });
@@ -180,11 +178,10 @@ const getPastDataByUidAndId = async (req, res) => {
   const query = `select 
 	risk_analysis.timestampz ,users.name,risk_analysis.company_name,risk_analysis.sentiment,risk_analysis.analysis
 	from navicollect.risk_analysis, public.users
-	where risk_analysis.user_id = $1 
-	and risk_analysis.id = $2
+	where risk_analysis.id = $1
 	and risk_analysis.user_id=users.id`;
   try {
-    const result = await pool.query(query, [uid, id]);
+    const result = await pool.query(query, [id]);
     res.send({ status: true, rows: result.rows });
   } catch (err) {
     // console.log(err);
@@ -200,6 +197,6 @@ module.exports = {
   getClients,
   analyseRisk,
   saveRiskAnalysis,
-  getPastDataByUid,
-  getPastDataByUidAndId,
+  getPastDataByCompanyName,
+  getPastDataById,
 };
