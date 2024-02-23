@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import PulseLoader from "react-spinners/PulseLoader";
 import axios from "axios";
 import useReactSelectOptions from "../../utils/useReactSelectOptions";
-import reymondReport from "../../assets/reports/REYNOLDS_SMITH_&_HILLS_INC__2024-02-22_11-30-38.pdf/#toolbar=0";
+import reymondReport from "../../assets/reports/REYNOLDS_SMITH_&_HILLS_INC__2024-02-22_11-30-38.pdf";
 // import PDFViewer from "./PDFViewer";
 const RiskModelling = () => {
   const [custGroup, setCustGroup] = useState(null);
@@ -40,13 +40,14 @@ const RiskModelling = () => {
     console.log("generateReport called");
     setLoading(true);
     setShowPdf(false);
+    setShowSummary(false);
     setTimeout(() => {
       setShowSummary(true);
-    }, 10000);
+    }, 100000);
     setTimeout(() => {
       setShowPdf(true);
       setLoading(false);
-    }, 20000);
+    }, 200000);
   };
   return (
     <div className="flex h-full w-full flex-col gap-4">
@@ -117,7 +118,7 @@ const RiskModelling = () => {
         </div>
       ) : (
         loading && (
-          <div className="flex-grow h-40 w-full animate-pulse">
+          <div className="w-full animate-pulse">
             <div className="h-24 w-full bg-slate-200 flex justify-center items-center">
               <PulseLoader color="#1e293b" speedMultiplier={0.5} size={12} />
               <span className="inline-block pl-4"> Generating Summary</span>
