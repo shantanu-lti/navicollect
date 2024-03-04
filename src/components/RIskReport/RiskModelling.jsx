@@ -43,11 +43,11 @@ const RiskModelling = () => {
     setShowSummary(false);
     setTimeout(() => {
       setShowSummary(true);
-    }, 100000);
+    }, 10000);
     setTimeout(() => {
       setShowPdf(true);
       setLoading(false);
-    }, 200000);
+    }, 40000);
   };
   return (
     <div className="flex h-full w-full flex-col gap-4">
@@ -109,7 +109,7 @@ const RiskModelling = () => {
               </span>
             </div>
             <div>
-              <span className="block font-medium">Internation Score</span>
+              <span className="block font-medium">International Score</span>
               <span className="block text-center text-green-600 font-bold">
                 A
               </span>

@@ -47,7 +47,7 @@ const Sidebar = () => {
             <Link to="/risk-analysis">
               <FaGauge className="fill-gray-100 mx-auto xl:text-lg inline" />
               <span className="text-white pl-4 text-sm xl:text-base">
-                Risk Analysis
+                Risk Feed
               </span>
             </Link>
           </li>

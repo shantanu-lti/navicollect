@@ -10,7 +10,7 @@ const PageHeader = ({ pageTitle }) => {
   const { pathname } = useLocation();
   let title;
   if (pathname === "/") title = "Follow Up";
-  if (pathname === "/risk-analysis") title = "Credit Risk Analysis";
+  if (pathname === "/risk-analysis") title = "Feed Sentiment Indicator";
   if (pathname.includes("/risk-analysis/past-data")) title = "Past Data";
   if (pathname.includes("/risk-modelling")) title = "Risk Modelling";
 

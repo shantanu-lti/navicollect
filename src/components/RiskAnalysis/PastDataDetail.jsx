@@ -44,8 +44,8 @@ const PastDataDetail = () => {
               label: "%",
               data: [
                 Math.round(positive * 100),
-                Math.round(negative * 100),
                 Math.round(neutral * 100),
+                Math.round(negative * 100),
               ],
               hoverOffset: 10,
               backgroundColor: ["#22c55e", "#14b8a6", "#ef4444"],

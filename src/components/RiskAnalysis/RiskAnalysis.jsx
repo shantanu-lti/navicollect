@@ -113,8 +113,8 @@ const RiskAnalysis = () => {
               label: "%",
               data: [
                 Math.round(positive * 100),
-                Math.round(negative * 100),
                 Math.round(neutral * 100),
+                Math.round(negative * 100),
               ],
               hoverOffset: 10,
               backgroundColor: ["#22c55e", "#14b8a6", "#ef4444"],
@@ -182,10 +182,10 @@ const RiskAnalysis = () => {
           </div>
         </form>
       </div>
-      <div className="mt-4 lg:mt-12 w-full h-full flex flex-wrap lg:flex-nowrap justify-between gap-4 lg:gap-6">
+      <div className="mt-4 lg:mt-12 w-full h-full flex flex-wrap lg:flex-nowrap justify-between gap-4 lg:gap-6 max-h-[600px]">
         {analysis && !loading && custGroup ? (
           <>
-            <div className="w-full 2xl:w-2/5  bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md">
+            <div className="w-full h-full max-h-[600px] 2xl:w-2/5  bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md">
               <h2 className="text-xl font-bold">Financial Risk Score</h2>
               <div className="flex h-full w-full justify-center items-center">
                 <canvas
@@ -194,7 +194,7 @@ const RiskAnalysis = () => {
                 ></canvas>
               </div>
             </div>
-            <div className="w-full h-full bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md overflow-auto max-h-[550px]">
+            <div className="w-full h-full bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md overflow-auto max-h-[600px]">
               <h2 className="text-xl font-bold">
                 Analysis Report for {custGroup.value}
               </h2>
@@ -207,8 +207,8 @@ const RiskAnalysis = () => {
         ) : (
           loading && (
             <>
-              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[500px] rounded-sm  animate-pulse"></div>
-              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[500px] rounded-sm animate-pulse"></div>
+              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[600px] rounded-sm  animate-pulse"></div>
+              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[600px] rounded-sm animate-pulse"></div>
             </>
           )
         )}

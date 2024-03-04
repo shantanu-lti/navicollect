@@ -17,7 +17,7 @@ const Home = () => {
       )}
       <div className="flex flex-col p-4 lg:px-8 container mx-auto h-full">
         <PageHeader />
-        <div className="mt-4 h-full flex-grow">
+        <div className="mt-4 flex-grow">
           <Outlet />
         </div>
       </div>
