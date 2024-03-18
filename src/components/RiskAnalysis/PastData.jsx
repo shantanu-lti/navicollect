@@ -9,8 +9,7 @@ const PastData = () => {
   const getData = async () => {
     try {
       const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/risk-analysis/past-data";
+        import.meta.env.VITE_BACKEND_BASE_URL + "/risk-analysis/past-data";
       const response = await axios.get(url, {
         params: {
           custGroup: custGroup,
@@ -50,7 +49,7 @@ const PastData = () => {
   console.log(data);
   return (
     <div className="w-full overflow-auto">
-      <table className="w-full border-collapse rounded-sm past-data-table ">
+      <table className="w-full border-collapse rounded-md past-data-table ">
         <thead className="bg-slate-800">
           <tr>
             <th rowSpan={2}>#</th>

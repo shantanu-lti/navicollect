@@ -1,69 +1,78 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap");
 @import "react-tooltip/dist/react-tooltip.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-*{
+* {
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif !important; 
+  font-family: "Poppins", sans-serif !important;
 }
-main::-webkit-scrollbar-button{
+main::-webkit-scrollbar-button {
   display: none;
 }
-main::-webkit-scrollbar{
+main::-webkit-scrollbar {
   width: 8px;
   height: 8px;
-  background-color: rgba(0,0,0,0.1);
+  background-color: rgba(0, 0, 0, 0.1);
 }
-main::-webkit-scrollbar-thumb{
-  background-color: rgba(0,0,0,0.1);
+main::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 100px;
 }
-.bg-image-ai{
+.bg-image-ai {
   background-image: url("./assets/bg/bg14.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: left;
 }
 
-.react-select__control{
+.react-select__control {
   padding: 0.39rem !important;
   border-color: #d1d5db !important;
   border-width: 1px;
-  border-radius: 2px !important;
+  border-radius: 0.375rem !important;
   font-size: 0.9rem;
 }
 
-.react-select__control--is-focused{
+.react-select__control--is-focused {
   border-color: #d1d5db !important;
   box-shadow: 0 0 0 1px #d1d5db !important ;
   /* outline: 2px !important; */
 }
 
-.react-select__control--is-disabled{
-  background-color:#d1d5db17 !important;
+.react-select__control--is-disabled {
+  background-color: #d1d5db17 !important;
 }
 
-.react-select__menu, .react-select__menu-list, .react-select__option{
+.react-select__menu,
+.react-select__menu-list,
+.react-select__option {
   font-size: 0.85rem;
 }
-.react-select--is-disabled{
+.react-select--is-disabled {
   background-color: white;
 }
-.markdown *{
+.markdown * {
   all: revert;
 }
 
-.markdown em{
-  font-weight: 600; 
+.markdown em {
+  font-weight: 600;
   font-style: normal;
 }
 
-.past-data-table td,th{
+.past-data-table td,
+th {
   padding: 0.75rem 0.5rem;
   border: solid 1px #80808036;
 }
 
-.past-data-table th{
-  color:white
+.past-data-table th {
+  color: white;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

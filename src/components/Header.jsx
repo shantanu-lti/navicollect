@@ -2,7 +2,7 @@ import React from "react";
 import { FaRightFromBracket } from "react-icons/fa6";
 import logo from "../assets/NaviIcon.png";
 import { FaCircleUser } from "react-icons/fa6";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/AuthContext";
 import useApi from "../utils/useApi";
 const Header = () => {
   const { user } = useAuth();

@@ -5,7 +5,7 @@ const FollowUp = () => {
   const [fileUploaded, setFileUploaded] = useState(false);
   return (
     <div className="h-full w-full">
-      <div className="flex justify-between items-end">
+      <div className="mt-8 flex justify-between items-end">
         <p className="font-semibold text-xl">
           Please upload the AR data per attached template or Connect to SAP
           system to process the data:
@@ -20,7 +20,7 @@ const FollowUp = () => {
 
       <>
         <p className="font-semibold text-xl mt-12">Select Criterias:</p>
-        <div className="mt-6">
+        <div className="mt-4">
           <SelectCategories fileUploaded={fileUploaded} />
         </div>
       </>

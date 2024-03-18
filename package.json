@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/navicollect",
+    "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -24,7 +24,9 @@
     "react-select": "^5.8.0",
     "react-spinners": "^0.13.8",
     "react-toastify": "^10.0.4",
-    "react-tooltip": "^5.26.0"
+    "react-tooltip": "^5.26.0",
+    "aws-amplify": "^6.0.20",
+    "react-qr-code": "^2.0.12"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

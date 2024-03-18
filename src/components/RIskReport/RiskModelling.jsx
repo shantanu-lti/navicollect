@@ -15,9 +15,7 @@ const RiskModelling = () => {
   const __dirname = new URL(".", import.meta.url).pathname;
   const getClients = (searchText) => {
     return new Promise(async (resolve, reject) => {
-      const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/get-clients";
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/get-clients";
       if (!searchText) return resolve([]);
       try {
         const {
@@ -69,7 +67,7 @@ const RiskModelling = () => {
             <button
               disabled={loading}
               name="analyseRisk"
-              className="w-[180px] outline-0 bg-blue-600 text-white font-bold  px-4 py-3 rounded-sm"
+              className="w-[180px] outline-0 bg-blue-600 text-white font-bold  px-4 py-3 rounded-md"
             >
               {loading ? (
                 <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
@@ -82,7 +80,7 @@ const RiskModelling = () => {
       </div>
 
       {showSummary ? (
-        <div className="p-4 rounded-sm bg-white shadow-md">
+        <div className="p-4 rounded-md bg-white shadow-md">
           <div className="flex justify-around">
             <div className="">
               <span className="block font-medium">Risk Score</span>

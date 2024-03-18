@@ -23,42 +23,45 @@ const Sidebar = () => {
           </span>
         </div>
         <ul className="md:flex flex-col">
-          <li
-            className={
-              pathname === "/"
-                ? "list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-                : "list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-            }
-          >
-            <Link to="/">
+          <li className="list-none">
+            <Link
+              to="/"
+              className={
+                pathname === "/"
+                  ? "block list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+                  : "block list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+              }
+            >
               <FaHouse className="fill-gray-100 mx-auto xl:text-lg inline" />{" "}
               <span className="text-white pl-4 text-sm xl:text-base">
                 Follow Up
               </span>
             </Link>
           </li>
-          <li
-            className={
-              pathname.includes("risk-analysis")
-                ? "list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-                : "list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-            }
-          >
-            <Link to="/risk-analysis">
+          <li className="list-noneblock ">
+            <Link
+              to="/risk-analysis"
+              className={
+                pathname.includes("risk-analysis")
+                  ? "block list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+                  : "block list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+              }
+            >
               <FaGauge className="fill-gray-100 mx-auto xl:text-lg inline" />
               <span className="text-white pl-4 text-sm xl:text-base">
                 Risk Feed
               </span>
             </Link>
           </li>
-          <li
-            className={
-              pathname.includes("risk-report")
-                ? "list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-                : "list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
-            }
-          >
-            <Link to="/risk-modelling">
+          <li className="list-none">
+            <Link
+              to="/risk-modelling"
+              className={
+                pathname.includes("risk-modelling")
+                  ? "block list-none bg-slate-950 px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+                  : "block list-none px-6 py-8 2xl:py-8 2xl:p-8 cursor-pointer"
+              }
+            >
               <FaRegFileLines className="fill-gray-100 mx-auto xl:text-lg inline" />
               <span className="text-white pl-4 text-sm xl:text-base">
                 Risk Modelling

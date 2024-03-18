@@ -45,9 +45,7 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
     const form = new FormData();
     form.set("file", uploadedFile);
     console.log(form.get("file"));
-    const url =
-      import.meta.env.VITE_BACKEND_BASE_URL +
-      "/account-receivable/upload-excel";
+    const url = import.meta.env.VITE_BACKEND_BASE_URL + "/upload-excel";
     try {
       const uploadResult = await axios.post(url, form, {
         headers: {
@@ -82,9 +80,9 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
   });
 
   const inactivedragClass =
-    "w-full h-[100px] bg-white border-dashed border-2 border-slate-300 rounded-sm p-4 mb-4 flex justify-center items-center cursor-pointer";
+    "w-full h-[100px] bg-white border-dashed border-2 border-slate-300 rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer";
   const activeedragClass =
-    "w-full h-[100px] bg-slate-50 border-dashed border-2 border-blue-300 rounded-sm p-4 mb-4 flex justify-center items-center cursor-pointer";
+    "w-full h-[100px] bg-slate-50 border-dashed border-2 border-blue-300 rounded-md p-4 mb-4 flex justify-center items-center cursor-pointer";
 
   return (
     <form onSubmit={handleUpload} ref={fileUploadFormRef}>
@@ -108,8 +106,8 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
           <li
             className={
               !fileUploaded
-                ? "list-none flex items-center justify-between py-3 px-4 rounded-sm bg-slate-50 border-2"
-                : "list-none flex items-center justify-between py-3 px-4 rounded-sm bg-slate-50 border-2 border-green-300"
+                ? "list-none flex items-center justify-between py-3 px-4 rounded-md bg-slate-50 border-2"
+                : "list-none flex items-center justify-between py-3 px-4 rounded-md bg-slate-50 border-2 border-green-300"
             }
           >
             <div>
@@ -133,7 +131,7 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
         {!isDisabled && !fileUploaded ? (
           <button
             disabled={isDisabled}
-            className="bg-blue-600 w-[120px] text-white font-bold  px-4 py-3 rounded-sm"
+            className="bg-blue-600 w-[120px] text-white font-bold  px-4 py-3 rounded-md"
           >
             {isUploading ? (
               <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
@@ -158,7 +156,7 @@ const MyDropzone = ({ fileUploaded, setFileUploaded }) => {
         <div className="ml-auto flex gap-8">
           <button
             type="button"
-            className=" text-slate-800 font-bold text-sm rounded-sm"
+            className=" text-slate-800 font-bold text-sm rounded-md"
             onClick={() => {
               setShowSapConnectModal(true);
             }}

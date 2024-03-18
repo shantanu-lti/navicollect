@@ -1,5 +1,5 @@
 import React from "react";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/AuthContext";
 import { FaRightFromBracket, FaMagnifyingGlass } from "react-icons/fa6";
 import useApi from "../utils/useApi";
 import { useLocation } from "react-router-dom";
@@ -43,22 +43,18 @@ const PageHeader = ({ pageTitle }) => {
           <FaRightFromBracket className="text-lg" />
         </span>
 
-        <div
-          data-tooltip-id="my-tooltip"
-          data-tooltip-content="My Profile"
-          data-tooltip-place="bottom"
-          className="flex items-center gap-4 bg-white p-4 rounded-full cursor-pointer"
-        >
+        <div className="flex items-center  bg-white p-4 gap-2 rounded-full cursor-pointer">
           <div className="w-10 h-10 bg-slate-700 flex justify-center items-center rounded-full ">
             <span className="inline-block text-white font-bold">
-              {user.name.charAt(0)}
+              {user.username.substring(0, 2).toUpperCase()}
             </span>
           </div>
           <div>
             <span className="block font-semibold text-xs xl:text-base">
-              {user.name}
+              {user.username.charAt(0).toUpperCase() +
+                user.username.substring(1)}
             </span>
-            <span className="block text-xs">email@example.com</span>
+            {/* <span className="block text-xs">email@example.com</span> */}
           </div>
         </div>
       </div>

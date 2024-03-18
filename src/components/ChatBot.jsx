@@ -10,14 +10,14 @@ const ChatBot = () => {
   return (
     <>
       {showChatBox && (
-        <div className="fixed z-10 rounded-sm bottom-2 right-2 w-[350px] h-[80vh] border shadow-md flex justify-center items-center lg:h-[84vh] lg:w-[350px] xl:w-[400px] 2xl:w-[460px] bg-[#0E1117]">
+        <div className="fixed z-10 rounded-md bottom-2 right-2 w-[350px] h-[80vh] border shadow-md flex justify-center items-center lg:h-[84vh] lg:w-[350px] xl:w-[400px] 2xl:w-[460px] bg-[#0E1117]">
           {loading && (
             <PulseLoader size={5} color="#fff" speedMultiplier={0.5} />
           )}
 
           <iframe
             src={chatbotUrl}
-            className={loading ? "hidden" : "rounded-sm h-full w-full"}
+            className={loading ? "hidden" : "rounded-md h-full w-full"}
             onLoad={() => setLoading(false)}
           />
 

@@ -20,7 +20,7 @@ const SAPConnectModal = ({ setShowSapConnectModal }) => {
         }}
       ></div>
       <div className=" h-screen w-full absolute top-0 flex justify-center items-center">
-        <div className="w-4/5 p-4 lg:p-6 max-w-[800px] bg-white shadow-md rounded-sm z-50">
+        <div className="w-4/5 p-4 lg:p-6 max-w-[800px] bg-white shadow-md rounded-md z-50">
           <div className="flex justify-between items-center">
             <div>
               <span className="text-lg font-bold">SAP Connect - </span>
@@ -44,7 +44,7 @@ const SAPConnectModal = ({ setShowSapConnectModal }) => {
                   id="sapSID"
                   name="sapSID"
                   type="text"
-                  className="block mt-2 w-full p-3 border  border-gray-300 rounded-sm outline-gray-300"
+                  className="block mt-2 w-full p-3 border  border-gray-300 rounded-md outline-gray-300"
                   required
                 />
               </div>
@@ -54,7 +54,7 @@ const SAPConnectModal = ({ setShowSapConnectModal }) => {
                   id="apiEndpoint"
                   name="apiEndpoint"
                   type="text"
-                  className="block mt-2 w-full p-3 border  border-gray-300 rounded-sm outline-gray-300"
+                  className="block mt-2 w-full p-3 border  border-gray-300 rounded-md outline-gray-300"
                   required
                 />
               </div>
@@ -63,7 +63,7 @@ const SAPConnectModal = ({ setShowSapConnectModal }) => {
                 <select
                   id="authentication"
                   name="authentication"
-                  className="block mt-2 w-full p-3 border  border-gray-300 rounded-sm outline-gray-300"
+                  className="block mt-2 w-full p-3 border  border-gray-300 rounded-md outline-gray-300"
                   required
                 >
                   <option value="Basic">Basic</option>

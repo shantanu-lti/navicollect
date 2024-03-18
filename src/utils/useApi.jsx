@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../context/AuthContext";
 const useApi = () => {
   const { setUser } = useAuth();
   const loginUser = (username, password) => {

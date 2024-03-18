@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar from "./components/Sidebar";
 import ChatBot from "./components/ChatBot";
-import { useAuth } from "./context/auth";
+import { useAuth } from "./context/AuthContext";
 import Header from "./components/Header";
 import ModalContextProvider from "./context/modal";
 function App() {
@@ -23,7 +23,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="dark"
       />
       <Header />
       <div className="flex w-full h-screen overflow-hidden">

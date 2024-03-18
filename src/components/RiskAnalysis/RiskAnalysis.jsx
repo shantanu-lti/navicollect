@@ -20,9 +20,7 @@ const RiskAnalysis = () => {
 
   const getClients = (searchText) => {
     return new Promise(async (resolve, reject) => {
-      const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/get-clients";
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/get-clients";
       if (!searchText) return resolve([]);
       try {
         const {
@@ -46,9 +44,7 @@ const RiskAnalysis = () => {
     setLoading(true);
     setAnalysis(null);
     setDataSaved(false);
-    const url =
-      import.meta.env.VITE_BACKEND_BASE_URL +
-      "/account-receivable/risk-analysis";
+    const url = import.meta.env.VITE_BACKEND_BASE_URL + "/risk-analysis";
     try {
       const response = await axios.post(
         url,
@@ -74,9 +70,7 @@ const RiskAnalysis = () => {
   const handleSaveData = async () => {
     setSavingData(true);
     try {
-      const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/risk-analysis/save";
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/risk-analysis/save";
       const payload = {
         sentiment: analysis.sentiment,
         analysis: analysis.llm_analysis,
@@ -164,7 +158,7 @@ const RiskAnalysis = () => {
               disabled={loading}
               onClick={handleAnalyzeRisk}
               name="analyseRisk"
-              className="w-[160px] outline-0 bg-blue-600 text-white font-bold  px-4 py-3 rounded-sm"
+              className="w-[160px] outline-0 bg-blue-600 text-white font-bold  px-4 py-3 rounded-md"
             >
               {loading ? (
                 <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
@@ -185,7 +179,7 @@ const RiskAnalysis = () => {
       <div className="mt-4 lg:mt-12 w-full h-full flex flex-wrap lg:flex-nowrap justify-between gap-4 lg:gap-6 max-h-[600px]">
         {analysis && !loading && custGroup ? (
           <>
-            <div className="w-full h-full max-h-[600px] 2xl:w-2/5  bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md">
+            <div className="w-full h-full max-h-[600px] 2xl:w-2/5  bg-white p-4 lg:p-6 2xl:p-8 rounded-md shadow-md">
               <h2 className="text-xl font-bold">Financial Risk Score</h2>
               <div className="flex h-full w-full justify-center items-center">
                 <canvas
@@ -194,7 +188,7 @@ const RiskAnalysis = () => {
                 ></canvas>
               </div>
             </div>
-            <div className="w-full h-full bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md overflow-auto max-h-[600px]">
+            <div className="w-full h-full bg-white p-4 lg:p-6 2xl:p-8 rounded-md shadow-md overflow-auto max-h-[600px]">
               <h2 className="text-xl font-bold">
                 Analysis Report for {custGroup.value}
               </h2>
@@ -207,8 +201,8 @@ const RiskAnalysis = () => {
         ) : (
           loading && (
             <>
-              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[600px] rounded-sm  animate-pulse"></div>
-              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[600px] rounded-sm animate-pulse"></div>
+              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[600px] rounded-md  animate-pulse"></div>
+              <div className="w-full  bg-gray-200 p-4 lg:p-6 2xl:p-8 h-[600px] rounded-md animate-pulse"></div>
             </>
           )
         )}
@@ -218,7 +212,7 @@ const RiskAnalysis = () => {
         <div className="mt-4 flex justify-start items-center gap-6 ">
           {!dataSaved && (
             <button
-              className="w-[160px] bg-blue-600 text-white font-bold  px-4 py-3 rounded-sm"
+              className="w-[160px] bg-blue-600 text-white font-bold  px-4 py-3 rounded-md"
               onClick={handleSaveData}
             >
               {savingData ? (

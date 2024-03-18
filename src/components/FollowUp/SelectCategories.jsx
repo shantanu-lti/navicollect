@@ -38,9 +38,7 @@ const SelectCategories = () => {
       customer_description_code_list: custGroup ? custGroup.value : "",
     };
     try {
-      const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/send-email";
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/send-email";
       const response = await axios.post(url, payload, {
         headers: {
           Authorization:
@@ -74,8 +72,7 @@ const SelectCategories = () => {
 
   const getSbu = (searchText) => {
     return new Promise(async (resolve, reject) => {
-      const url =
-        import.meta.env.VITE_BACKEND_BASE_URL + "/account-receivable/get-sbus";
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/get-sbus";
       if (!searchText) return resolve([]);
       try {
         const {
@@ -94,9 +91,7 @@ const SelectCategories = () => {
 
   const getClientPartner = (searchText) => {
     return new Promise(async (resolve, reject) => {
-      const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/get-partners";
+      const url = import.meta.env.VITE_BACKEND_BASE_URL + "/get-partners";
       if (!searchText) return resolve([]);
       try {
         const {
@@ -115,8 +110,7 @@ const SelectCategories = () => {
 
   const getClientByPartner = async (partnerName) => {
     const url =
-      import.meta.env.VITE_BACKEND_BASE_URL +
-      "/account-receivable/get-clients-by-partner";
+      import.meta.env.VITE_BACKEND_BASE_URL + "/get-clients-by-partner";
     if (!partnerName) return;
     try {
       const {
@@ -257,7 +251,7 @@ const SelectCategories = () => {
           </div>
         </div> */}
 
-        <button className="w-[140px] mt-4 bg-blue-600 text-white font-bold  px-4 py-3 rounded-sm">
+        <button className="w-[140px] mt-4 bg-blue-600 text-white font-bold  px-4 py-3 rounded-md">
           {sending ? (
             <PulseLoader color="#ffffff" speedMultiplier={0.5} size={6} />
           ) : (

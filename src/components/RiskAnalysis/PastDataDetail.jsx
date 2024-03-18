@@ -12,8 +12,7 @@ const PastDataDetail = () => {
   const getData = async () => {
     try {
       const url =
-        import.meta.env.VITE_BACKEND_BASE_URL +
-        "/account-receivable/risk-analysis/past-data/id";
+        import.meta.env.VITE_BACKEND_BASE_URL + "/risk-analysis/past-data/id";
       const response = await axios.get(url, {
         params: {
           id: id,
@@ -74,17 +73,17 @@ const PastDataDetail = () => {
     return (
       <div className="flex flex-col animate-pulse gap-4 lg:gap-6">
         <div className="flex flex-col md:flex-row gap-4 lg:gap-6">
-          <div className="h-[400px] w-full rounded-sm bg-slate-300"></div>
-          <div className="h-[400px] w-full rounded-sm bg-slate-300"></div>
+          <div className="h-[400px] w-full rounded-md bg-slate-300"></div>
+          <div className="h-[400px] w-full rounded-md bg-slate-300"></div>
         </div>
-        <div className="h-[700px] w-full rounded-sm bg-slate-300"></div>
+        <div className="h-[700px] w-full rounded-md bg-slate-300"></div>
       </div>
     );
 
   return (
     <div className="flex flex-col gap-4 lg:gap-6">
       <div className="flex flex-col md:flex-row gap-4 lg:gap-6">
-        <div className="w-full rounded-sm bg-white shadow-md p-4 lg:p-6 2xl:p-8">
+        <div className="w-full rounded-md bg-white shadow-md p-4 lg:p-6 2xl:p-8">
           <h2 className="text-xl font-bold">Info</h2>
           <div className="flex justify-center items-start mt-4">
             <table className="w-full">
@@ -105,7 +104,7 @@ const PastDataDetail = () => {
             </table>
           </div>
         </div>
-        <div className="w-full bg-white p-4 lg:p-6 2xl:p-8 rounded-sm shadow-md">
+        <div className="w-full bg-white p-4 lg:p-6 2xl:p-8 rounded-md shadow-md">
           <h2 className="text-xl font-bold">Financial Risk Score</h2>
           <div className="flex h-full w-full justify-center items-center">
             <canvas
@@ -115,7 +114,7 @@ const PastDataDetail = () => {
           </div>
         </div>
       </div>
-      <div className="h-full w-full rounded-sm bg-white shadow-md  p-4 lg:p-6 2xl:p-8">
+      <div className="h-full w-full rounded-md bg-white shadow-md  p-4 lg:p-6 2xl:p-8">
         <h2 className="text-xl font-bold">
           Error Analysis for {data.company_name}
         </h2>
